@@ -1,7 +1,7 @@
 # app.py
 """
 PUNTO DI INGRESSO WEB (Streamlit): La cabina di regia per tuo padre.
-Versione: 1.3 (Fix Definitivo Testo Pagelle)
+Versione: 1.4 (Killer del Bollino e Pulizia Totale)
 """
 import streamlit as st
 from data_provider import DataProvider
@@ -10,9 +10,23 @@ from logic_engine import AdvancedAnalysisEngine
 # 1. Configurazione della Pagina Web
 st.set_page_config(page_title="NapoliCalcio", page_icon="⚽", layout="wide")
 
-# 2. INIEZIONE CSS: Ricostruiamo la veste grafica azzurra di Kivy
+# 2. INIEZIONE CSS: Ricostruiamo la veste grafica e NASCONDIAMO IL BOLLINO
 st.markdown("""
     <style>
+    /* ----------------------------------------- */
+    /* KILLER DEI MENU E DEI BOLLINI STREAMLIT   */
+    /* ----------------------------------------- */
+    #MainMenu {visibility: hidden;}
+    header {visibility: hidden;}
+    footer {visibility: hidden;}
+    .viewerBadge_container__1JCJq {display: none !important;}
+    .viewerBadge_link__1S137 {display: none !important;}
+    [data-testid="stCreatorBadge"] {display: none !important;}
+    iframe[title="Streamlit Badge"] {display: none !important;}
+    
+    /* ----------------------------------------- */
+    /* LA NOSTRA GRAFICA AZZURRA                 */
+    /* ----------------------------------------- */
     /* Sfondo Principale Azzurro Napoli */
     .stApp {
         background-color: #0087D1 !important;
@@ -151,5 +165,4 @@ else:
     
     for player in players_data:
         with st.expander(f"{player['name']} | xT: {player['xt']} | LBA: {player['lba']}"):
-            # FIX: Usiamo <div> invece di <p> così il CSS globale non lo fa diventare bianco!
             st.markdown(f"<div style='color: #222222 !important; font-size: 1rem; line-height: 1.5;'>{player['profile']}</div>", unsafe_allow_html=True)
