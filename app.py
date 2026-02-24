@@ -73,6 +73,18 @@ st.markdown("""
     .stAlert p {
         color: #003c82 !important;
     }
+    /* Nasconde il bollino del creatore in basso a destra */
+    #viewerBadge_container__1JCJq {
+        display: none !important;
+    }
+    /* Nasconde il footer standard di Streamlit */
+    footer {
+        visibility: hidden !important;
+    }
+    /* Nasconde il menu a tendina in alto a destra (i tre puntini) */
+    #MainMenu {
+        visibility: hidden !important;
+    }
     </style>
 """, unsafe_allow_html=True)
 
@@ -166,3 +178,4 @@ else:
     for player in players_data:
         with st.expander(f"{player['name']} | xT: {player['xt']} | LBA: {player['lba']}"):
             st.markdown(f"<div style='color: #222222 !important; font-size: 1rem; line-height: 1.5;'>{player['profile']}</div>", unsafe_allow_html=True)
+
